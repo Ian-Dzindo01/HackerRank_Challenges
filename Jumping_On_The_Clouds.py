@@ -1,9 +1,3 @@
-# e = 100
-# array of clouds c
-# every jump costs 1 energy point
-# jump of size k to cloud c[(i + k)%n].
-# if she lands on c[i] = 1, her energy decreases by 2
-# Game ends when she lands back on cloud 0
 #!/bin/python3
 
 import math
@@ -12,36 +6,33 @@ import random
 import re
 import sys
 
-# c is array of clouds, k is the size of the jump
-def jumpingOnClouds(c, k):
-    e = 100
-    i = 0
-    cc = c[i]
-    n = len(c)
+def jumpingOnClouds(c):
+    cnt = 0
+    index = 0
     while True:
-        e -= 1
-        i = (i + k)%n
-        if c[i] == 1:
-            e -= 2
+        if index+2 <= len(c) - 1:
+            if c[index+2] == 0:
+                index += 2
+                cnt += 1
+            else:
+                index +=1
+                cnt += 1
+        else:
+            index += 1
+            cnt += 1
 
-        if i == 0:
-            break
+        if index == len(c) - 1:
+            return cnt
 
-    return e
 
-        
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
-    nk = input().split()
-
-    n = int(nk[0])
-
-    k = int(nk[1])
+    n = int(input())
 
     c = list(map(int, input().rstrip().split()))
 
-    result = jumpingOnClouds(c, k)
+    result = jumpingOnClouds(c)
 
     fptr.write(str(result) + '\n')
 
