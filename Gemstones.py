@@ -1,18 +1,32 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
 from collections import Counter
 
-lst = []
-arr = ['smp', 'mgm', 'hmh', 'rmtt', 'kmnk', 'bmvb', 'lmtc']
+def gemstones(arr):
+    old_set = set
+    for i in arr:
+        old_set = old_set.intersection(set(i))
 
-for i in range(len(arr)):
-    for j in list(arr[i]):
-        lst.append(j)
+    return len(old_set)
 
-list_freq = Counter(lst)
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
-cnt = 0
+    n = int(input())
 
-for i in list_freq.values():
-    if i == len(arr)+1:
-        cnt += 1
+    arr = []
 
-print(cnt)
+    for _ in range(n):
+        arr_item = input()
+        arr.append(arr_item)
+
+    result = gemstones(arr)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
