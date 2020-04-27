@@ -11,41 +11,35 @@ import sys
 
 def encryption(s):
     res = ""
+    s = s.replace(" ", "")
     n = math.sqrt(len(s))
-    nrows = round(n)
-    ncols = lower + 1
-    s.replace(" ", "")
+    nrows = round(n)                             # if it rounded to the upper value, then you will not add 1 to number of columns
+
+    if (nrows - n) < 0:
+        ncols = nrows + 1
+    else:
+        ncols = nrows
+
+    for i in range(nrows):
+        for j in range(ncols):
+            if(i+(ncols*j) < len(s)):
+                res += s[i+(ncols*j)]
+            else:
+                continue
+
+        res += ' '
+
+    return res
+
+str1 = "chillout"
+print(encryption(str1))
+
+# chillout
+
+# chi
+# llo
+# ut
+
+# this turns out to 2 rows and 3 columns
 
 
-
-
-res = ""
-str1 = 'ifmanwasmeanttostayonthegroundgodwouldhavegivenusroots'
-nrows = 7
-ncols = 8
-for i in range(nrows):
-    for j in range(ncols):
-        if(i+(8*j) < len(str1)):
-            res += str1[i+(8*j)]
-        else:
-            continue
-
-    res += ' '
-
-print(res)
-
-
-
-
-print(str1[8])
-
-# if __name__ == '__main__':
-#     fptr = open(os.environ['OUTPUT_PATH'], 'w')
-
-#     s = input()
-
-#     result = encryption(s)
-
-#     fptr.write(result + '\n')
-
-#     fptr.close()
