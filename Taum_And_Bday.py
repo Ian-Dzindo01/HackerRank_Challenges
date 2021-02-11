@@ -19,17 +19,10 @@ import sys
 #
 
 def taumBday(b, w, bc, wc, z):
-    orgpr = b*bc + w*wc
-    secpr = 0
-    if bc > wc:
-        secpr = w*wc + (wc+z)*b
-    elif bc < wc:
-        secpr = b*bc + (bc+z)*w
+    mincostb = bc if bc < wc+z else wc+z
+    mincostw = wc if wc < bc+z else bc+z
 
-    if orgpr > secpr:
-        return secpr
-    else:
-        return orgpr
+    return mincostb*b + mincostw*w
 
 
 if __name__ == '__main__':
