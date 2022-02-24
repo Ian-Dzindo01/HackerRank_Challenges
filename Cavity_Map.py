@@ -1,18 +1,35 @@
-s = ['1112', '1912', '1892', '1234']
+#!/bin/python3
 
-arr = [[0 for x in range(len(s))] for x in range(len(s))]
+import math
+import os
+import random
+import re
+import sys
 
-for i in range(len(s)):
-    for j in range(len(s)):
-        arr[i][j] = int(s[i][j])
+def cavityMap(grid):
+    grid = [list(x) for x in grid]
 
-print(arr)
+    for i in range(1,n-1):
+        for j in range(1,n-1):
+            if grid[i][j] > grid[i-1][j] and grid[i][j] > grid[i+1][j] and grid[i][j] > grid[i][j-1] and grid[i][j] > grid[i][j+1]:
+                grid[i][j] = 'X'
 
-for i in range(1, len(s)-1):
-    for j in range(1, len(i[j])-1):
-        if
+    return ["".join(x) for x in grid]
 
-# 1112
-# 1912
-# 1892
-# 1234
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input().strip())
+
+    grid = []
+
+    for _ in range(n):
+        grid_item = input()
+        grid.append(grid_item)
+
+    result = cavityMap(grid)
+
+    fptr.write('\n'.join(result))
+    fptr.write('\n')
+
+    fptr.close()
