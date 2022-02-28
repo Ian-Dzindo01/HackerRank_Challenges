@@ -1,5 +1,6 @@
 s = 'www.abc.xy'
 k = 87
+k = k%26
 res = ''
 
 ran = list(range(65,91)) + list(range(97,123))
