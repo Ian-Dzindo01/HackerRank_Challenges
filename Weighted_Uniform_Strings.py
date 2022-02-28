@@ -1,20 +1,45 @@
-def weightedUniformStrings(s):
-    res = []
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+def weightedUniformStrings(s, queries):
+    result = []
+    d = {}
+    weight = 0
+
     for i in range(len(s)):
-        temp = 0
-        for j in range(i, len(s)):
-            if s[i] != s[j]:
-                res.append(temp)
-                break
+        if i == 0 or s[i] != s[i-1]:
+            weight = ord(s[i]) - ord('a') + 1
+        else:
+            weight = weight + ord(s[i]) - ord('a') + 1
 
-            temp +=  ord(s[i])-96
+        d[weight] = 1
 
+    for q in queries:
+        result.append("Yes" if q in d else "No")
 
-    return res
+    return result
 
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
-s = 'aaabbbbcccddd'
-r = weightedUniformStrings(s)
-print(r)
+    s = input()
 
-# brute forcing like this will not work, has to be in n time.
+    queries_count = int(input().strip())
+
+    queries = []
+
+    for _ in range(queries_count):
+        queries_item = int(input().strip())
+        queries.append(queries_item)
+
+    result = weightedUniformStrings(s, queries)
+
+    fptr.write('\n'.join(result))
+    fptr.write('\n')
+
+    fptr.close()
