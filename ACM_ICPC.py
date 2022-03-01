@@ -1,23 +1,49 @@
-topic = ['10101', '11001', '10111', '10000', '01110']
+import math
+import os
+import random
+import re
+import sys
 
+# iterate through two strings simultaneously and see if there is a 1
+# store the results in a dictionary
+# we can also perform bitwise or operation
 def acmTeam(topic):
-    d = dict.fromkeys(range(1, len(topic)+2), 0)
+    maxsub = 0
+    count = 0
 
-    for i in range(len(topic)):
-        for j in range(i, len(topic)):
-            temp = 0
-            for a in range(len(topic[i])):
-                if topic[i][a] == '1' or topic[j][a] == '1':
-                    temp += 1
+    for i in range(n):
+        for j in range(i, n):
+            sub = 0
+            for x,y in zip(topic[i], topic[j]):
+                if x == '1' or y == '1':
+                    sub += 1
 
-            d[int(temp)] += 1
+            if sub > maxsub:
+                maxsub = sub
+                count = 1
+            elif sub == maxsub:
+                count += 1
 
-    return d
+    return [maxsub, count]
 
-res = acmTeam(topic)
-print(res)
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
-key = max(res.keys())
-# print(key)
-# print(res[key])
+    first_multiple_input = input().rstrip().split()
 
+    n = int(first_multiple_input[0])
+
+    m = int(first_multiple_input[1])
+
+    topic = []
+
+    for _ in range(n):
+        topic_item = input()
+        topic.append(topic_item)
+
+    result = acmTeam(topic)
+
+    fptr.write('\n'.join(map(str, result)))
+    fptr.write('\n')
+
+    fptr.close()
