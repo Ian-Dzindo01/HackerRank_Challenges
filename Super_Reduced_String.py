@@ -1,21 +1,42 @@
-# maybe iterate through the array and delete every occurence of adjacent letters
-# end when string is empty or the program does not find any matches
-# you will probably have to use a while loop
+#!/bin/python3
 
-s = 'aaabccddd'
-s = list(s)
+import math
+import os
+import random
+import re
+import sys
 
-while(True):
-    found = False
-    for i in range(len(s)-1):
-        if s[i] == s[i+1]:
-            s.pop(i+1)
-            s.pop(i)
-            print(s)
-            found = True
+def superReducedString(s):
+    s = list(s)
+    while(True):
+        found = False
+        for i in range(len(s)-1):
+            if s[i] == s[i+1]:
+                s.pop(i+1)
+                s.pop(i)
+                found = True
+                break
+
+        if s == '' or found == False:
             break
 
-    if s == '' or found == False:
-        break
+    s = ''.join(s)
 
-print(s)
+    if str(s) == '':
+        return 'Empty String'
+    else:
+        return s
+
+
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = superReducedString(s)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
