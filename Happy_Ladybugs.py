@@ -1,25 +1,47 @@
-s = 'RRGGBBXX'
+#!/bin/python3
 
+import math
+import os
+import random
+import re
+import sys
+from collections import Counter
+
+# b is the string
+# n is the length of the string
+# g is the number of test cases
 def happyLadybugs(b):
-    if len(b) == 1:
-        return 'NO'
+    bugs = Counter(b)
+    for i,j in bugs.items():
+        if i != '_' and j == 1:
+            return "NO"
 
-    if len(list(set(b))) == 1:
-        return 'YES'
+    if bugs["_"] > 0:
+        return "YES"
+    else:
+        pair = 0
+        for i in range(len(b)-1):
+            if b[i] == b[i+1]:
+                pair += 1
+            elif pair > 0:
+                    pair = 0
+            else:
+                return "NO"
 
+    return "YES"
 
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
-    if len(list(set(b))) > 1 and '_' not in list(b):
-        return 'NO'
+    g = int(input().strip())
 
-    for i in list(set(b)):
-        if i == '_':
-            continue
+    for g_itr in range(g):
+        n = int(input().strip())
 
-        if b.count(i) < 2:
-            return 'NO'
+        b = input()
 
-    return 'YES'
+        result = happyLadybugs(b)
 
+        fptr.write(result + '\n')
 
-print(happyLadybugs(s))
+    fptr.close()
