@@ -7,10 +7,20 @@
 
 # adjust the return statement as well
 
-s = '99100'
-n = len(s)
+import math
+import os
+import random
+import re
+import sys
 
+# if yes print the first value in the increasing sequence
+# don't think brute forcing will work here
 def separateNumbers(s):
+    if len(set(s)) == 1:
+        print('NO')
+        return 0
+
+    n = len(s)
     for i in range(1, n//2+1):
         temp = int(s[:i])
 
@@ -26,4 +36,11 @@ def separateNumbers(s):
     return 0
 
 
-separateNumbers(s)
+if __name__ == '__main__':
+    q = int(input().strip())
+
+    for q_itr in range(q):
+        s = input()
+
+        separateNumbers(s)
+
