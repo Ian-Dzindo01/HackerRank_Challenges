@@ -3,6 +3,19 @@
 # Start with the first number, than the first 2, than the first 3 and keep on going like that.
 
 s = '1234'
+n = len(s)
 
-for i in range(len(s)):
-    print(s[0:i])
+t = list(range(int(s[0]), int(s[0]) + n))
+t = ''.join(str(e) for e in t)
+
+for i in range(1, n):
+    temp = int(s[:i])
+    t = list(range(temp, temp + n))
+    t = ''.join(str(e) for e in t)
+
+
+
+
+
+
+
