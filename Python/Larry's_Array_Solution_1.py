@@ -7,12 +7,13 @@ import numpy as np
 
 
 # Cannot use numpy in the submissions on HackerRank, will upload this to GitHub, but also search for another solution.
+# This will also need improvement. Does not work properly.
 
 A = [1, 6, 5, 2, 3, 4]
 
 def larrysArray(A):
     while(True):
-        for i in range(len(A)-2):
+        for i in range(1, len(A)-2):
             if sorted(A[i:i+3]) != A[i:i+3]:
                 temp = check(A[i:i+3])
                 if temp == 0:
@@ -20,10 +21,13 @@ def larrysArray(A):
                 else:
                     A[i:i+3] = temp
 
+                print(A)
+
             if A == sorted(A):
                 return "YES"
 
 def check(l):
+    print(l)
     if list(np.roll(l, -1)) == sorted(l):
         return list(np.roll(l, -1))
     elif list(np.roll(l, -2)) == sorted(l):
