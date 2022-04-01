@@ -1,10 +1,30 @@
-arr = [[8, 1], [4, 2], [5, 6], [3, 1], [4, 3]]
+#!/bin/python3
 
-def jimOrders(orders):
-    d = {}
-    for i in range(len(orders)):
-        d[i+1] = orders[i][0] + orders[i][1]
+import math
+import os
+import random
+import re
+import sys
 
-    d = dict(sorted(d.items(), key=lambda item: item[1]))
+def minimumAbsoluteDifference(s):
+    s.sort()
+    min = abs(s[0] - s[1])
+    for i in range(1, len(s)-1):
+        if abs(s[i] - s[i+1]) < min:
+            min = abs(s[i] - s[i+1])
 
-    print(list(d.keys()))
+    return min
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input().strip())
+
+    arr = list(map(int, input().rstrip().split()))
+
+    result = minimumAbsoluteDifference(arr)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
