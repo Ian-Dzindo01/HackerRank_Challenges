@@ -32,11 +32,20 @@
 # probably going to have a time limitation
 # find and display the counter value at time t
 # find a way to not have to generate the whole list each time
-# maybe identify in which section the number is and work from there
+# maybe identify in which section the number is and work from there, generate only the starting number of each grid
+# the formula is prev * 2 + 2
+# I GET IT
+# brilliant solution taken from the discussion page
 
-c = 3
-i = 0
-while(True):
+t = 17
+rem = 3
+while t > rem:
+    t -= rem
+    # print(t)
+    rem *= 2
+    # print(rem)
+
+print(rem-t+1)
 
 
 
