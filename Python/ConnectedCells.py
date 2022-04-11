@@ -9,7 +9,12 @@
 # if the check function returns a coordinate, recall the check function with that new coordinate
 # if it does not find a coordinate terminate and return the length of the region
 # keep a counter to count each value traversed
+# beware you also have to check diagonal squares
 
  grid = [[1, 1, 1, 0], [0, 1, 1, 0], [0, 0, 1, 0], [1, 0, 0, 0]]
 
-def check()
+def check(pos):
+    xi = [0,0,1,-1]          # the coordinates around the given cube to check
+    yi = [1,-1,0,0]
+
+
